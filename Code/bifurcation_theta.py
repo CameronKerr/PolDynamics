@@ -43,9 +43,9 @@ theta_values = np.linspace(0, np.pi, 10000)
 iterations = 1000
 last = 100
 # Initialize
-a = np.zeros(len(beta_values))
-b = np.zeros(len(beta_values))
-e = np.zeros(len(beta_values))
+a = np.zeros(len(theta_values))
+b = np.zeros(len(theta_values))
+e = np.zeros(len(theta_values))
 a[:] = a0
 b[:] = b0
 e[:] = 0
