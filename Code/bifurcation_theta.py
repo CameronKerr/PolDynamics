@@ -49,9 +49,9 @@ e = np.zeros(len(beta_values))
 a[:] = a0
 b[:] = b0
 e[:] = 0
-a_result = np.empty((last, len(beta_values)))
-b_result = np.empty((last, len(beta_values)))
-e_result = np.empty((last, len(beta_values)))
+a_result = np.empty((last, len(theta_values)))
+b_result = np.empty((last, len(theta_values)))
+e_result = np.empty((last, len(theta_values)))
 
 # Iterate
 for i in range(iterations):
