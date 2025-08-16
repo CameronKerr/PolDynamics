@@ -2,7 +2,7 @@
 # Bifurcation diagram over theta with predictions #
 ###################################################
 
-# Contains code to generate Figure 3
+# Contains code to generate Figure C.1
 
 # Load required libraries:
 import numpy as np
