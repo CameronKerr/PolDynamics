@@ -2,7 +2,7 @@
 # Bifurcation diagrams over beta and alpha #
 ############################################
 
-# Contains code to generate Figure 5
+# Contains code to generate Figure 3
 
 # Load required libraries:
 import numpy as np
