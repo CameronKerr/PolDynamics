@@ -2,7 +2,7 @@
 # Influence coefficients heatmap #
 ##################################
 
-# Contains code to generate Figure 4
+# Contains code to generate Figure C.2
 
 # Load required libraries:
 import numpy as np
