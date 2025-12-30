@@ -2,12 +2,11 @@
 # Bifurcation diagram over theta with predictions #
 ###################################################
 
-# Contains code to generate Figure C.1
+# Code to generate Appendix Figure D.1
 
 # Load required libraries:
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
 
 # Fix all parameters except, alpha and beta
 tau = 1.5

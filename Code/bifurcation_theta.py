@@ -2,12 +2,11 @@
 # Bifurcation diagram over theta #
 ##################################
 
-# Contains code to generate Figure 2
+# Contains code to generate Figure 4a-c
 
 # Load required libraries:
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
 
 # Fix all parameters except, alpha and beta
 tau = 1.5

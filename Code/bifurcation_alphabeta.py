@@ -2,12 +2,11 @@
 # Bifurcation diagrams over beta and alpha #
 ############################################
 
-# Contains code to generate Figure 3
+# Contains code to generate Figure 3e,f
 
 # Load required libraries:
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
 
 # Fix all parameters except, alpha and beta
 tau = 1.5

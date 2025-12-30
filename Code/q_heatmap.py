@@ -1,15 +1,15 @@
-##########################
-# Cost-emissions heatmap #
-##########################
+###################
+# theta-q heatmap #
+###################
 
-# Contains code to generate Figure 3a-c
+# Contains code to generate Figure 4d
 
 # Load required libraries:
 import numpy as np
 import matplotlib.pyplot as plt
 
 # Map returns the next iteration in the trajectory 
-def HK_prejudice_map(a, b, e, beta):
+def HK_prejudice_map(a, b, e, lam, omega, alpha, beta):
     e_next = (1 - gamma)*e + 1/2*alpha*(1 - (p*a + (1-p)*b))
     # Initialize empty iteration
     a_next = np.empty(len(a))
@@ -25,20 +25,21 @@ def HK_prejudice_map(a, b, e, beta):
             
     return a_next, b_next, e_next
 
-# Fixed all parameters except beta and alpha
+# Fixed all parameters except theta and q
+
 tau = 1.5
-p = 0.1
-r = 0.2
-lam = 0.9
+p= 0.1
+r= 0.2
+social = 0.25
 gamma = 0.2
-omega = 0
+m = 4
 a0 = 1
 b0 = -1
-# a-(0.9, 0), b-(0.95, 0.05/0.95), c-(0.99, 1/11)
-
 # Setting up bifurcation diagram loop
-beta_values = np.linspace(-10, 10, 100)
-alpha_values = np.linspace(0, 2, 100)
+q_values = np.linspace(0, 1, 100)
+theta_values = np.linspace(0, np.pi, 100)
+alpha_values = m*np.sin(theta_values)*gamma
+beta_values = m*np.cos(theta_values)
 iterations = 1000
 last = 100
 # Initialize
@@ -52,54 +53,57 @@ a_result = np.empty((last, len(beta_values)))
 b_result = np.empty((last, len(beta_values)))
 e_result = np.empty((last, len(beta_values)))
 
-alpha_averages = []
-beta_averages = []
+q_averages = []
+theta_averages = []
 c_averages = []
 e_averages = []
 
 # Iterate
-for alpha in alpha_values:
+for q in q_values:
+    lam = 1 - (1-q)*(1-social)
+    omega = q*(1-social)/lam
     for i in range(iterations):
-        a, b, e = HK_prejudice_map(a, b, e, beta_values)
+        a,b,e = HK_prejudice_map(a, b, e, lam, omega, alpha_values, beta_values)
         if i >= (iterations - last):
             a_result[i - (iterations - last)] = a
             b_result[i - (iterations - last)] = b
-            e_result[i - (iterations - last)] = e
-    for k in range(len(beta_values)):
+            e_result[i - (iterations - last)] = e  
+    for k in range(len(theta_values)):
         e_averages.append(np.average(e_result[:, k]))
         c_averages.append(np.average(np.concatenate((a_result[:, k], b_result[:, k]))))
-        alpha_averages.append(alpha)
-        beta_averages.append(beta_values[k])
+        q_averages.append(q)
+        theta_averages.append(theta_values[k])        
+
 
 plt.figure()
-plt.suptitle('Proportion of prejudice = ' + str((omega*lam)/(1-lam*(1-omega))))
+plt.suptitle('')
 plt.subplot(211)
-plt.ylabel('Pollutant emission rate')
-plt.scatter(beta_averages, alpha_averages, c=e_averages, vmin=0, vmax=10) 
+plt.ylabel('')
+plt.scatter(q_averages, theta_averages, c=e_averages, vmin=0, vmax=4) 
 # Add colorbar (gradient legend)
 cbar = plt.colorbar()
 cbar.set_label('Pollutant level')
 plt.subplot(212)
-plt.xlabel('Net cost of mitigation')
-plt.ylabel('Pollutant emission rate')
-plt.scatter(beta_averages, alpha_averages, c=c_averages, vmin=-1, vmax=1) 
+plt.xlabel('Prejudice-to-Objectivity ratio (q)')
+plt.ylabel('Relative cost of mitigation (theta)')
+plt.scatter(q_averages, theta_averages, c=c_averages, vmin=-1, vmax=1) 
 cbar = plt.colorbar()
 cbar.set_label('Level of mitigation')
 plt.show()
 
-# For figure
-plt.figure(figsize=(8, 3.15))
+plt.figure(figsize=(6.15, 6.15))
+plt.subplot(211)
 plt.xticks(color='w')
 plt.yticks(color='w')
-plt.scatter(beta_averages, alpha_averages, c=e_averages, vmin=0, vmax=10)
+plt.yticks(np.arange(0, (np.pi + 0.1), step=(np.pi/4)))
+plt.scatter(q_averages, theta_averages, c=e_averages, vmin=0, vmax=4) 
 cbar = plt.colorbar()
 plt.setp(cbar.ax.get_yticklabels(), color='white')
-plt.savefig("Figure1c_e.pdf") 
-
-plt.figure(figsize=(8, 3.15))
+plt.subplot(212)
 plt.xticks(color='w')
 plt.yticks(color='w')
-plt.scatter(beta_averages, alpha_averages, c=c_averages, vmin=-1, vmax=1) 
+plt.yticks(np.arange(0, (np.pi + 0.1), step=(np.pi/4)))
+plt.scatter(q_averages, theta_averages, c=c_averages, vmin=-1, vmax=1) 
 cbar = plt.colorbar()
 plt.setp(cbar.ax.get_yticklabels(), color='white')
-plt.savefig("Figure1c_o.pdf") 
+plt.savefig("figure3d.pdf") 

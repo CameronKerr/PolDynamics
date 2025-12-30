@@ -1,0 +1,11 @@
+name: PolDynamics-env
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13.5
+  - numpy=2.3.1
+  - matplotlib=3.10.3
+  - pip
+  - pip:
+      - mpltern==1.0.4
+
