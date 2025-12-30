@@ -7,6 +7,7 @@
  - **matplotlib**: 3.10.3
  - **mpltern**: 1.0.4
 ## Repo Organization
+``` bash
 Code
   |-- bifurcation_alphabeta.py
   |-- bifurcation_theta.py
@@ -24,4 +25,4 @@ Figures
   |-- FigureD.1.pdf
 |-- environment.yml
 |-- README.md
-
+```
