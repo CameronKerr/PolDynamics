@@ -32,7 +32,7 @@ p= 0.1
 r= 0.2
 social = 0.25
 gamma = 0.2
-m = 4
+m = 5
 a0 = 1
 b0 = -1
 # Setting up bifurcation diagram loop
