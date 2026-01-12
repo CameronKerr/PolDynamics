@@ -88,7 +88,7 @@ def gen_fig3ac(q, form):
         plt.scatter(beta_averages, alpha_averages, c=e_averages, vmin=0, vmax=10)
         cbar = plt.colorbar()
         plt.setp(cbar.ax.get_yticklabels(), color='white')
-        plt.savefig("Figure3heatmap_e.pdf") 
+        plt.savefig("Figure3heatmap_e.png") 
         
         plt.figure(figsize=(8, 3.15))
         plt.xticks(color='w')
@@ -96,7 +96,7 @@ def gen_fig3ac(q, form):
         plt.scatter(beta_averages, alpha_averages, c=c_averages, vmin=-1, vmax=1) 
         cbar = plt.colorbar()
         plt.setp(cbar.ax.get_yticklabels(), color='white')
-        plt.savefig("Figure3heatmap_o.pdf")         
+        plt.savefig("Figure3heatmap_o.png")         
 
 ## HK_prejudice_map ##
 # Returns the next iteration of the model

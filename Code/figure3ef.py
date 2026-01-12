@@ -175,21 +175,21 @@ def gen_fig3f(form):
         plt.yticks(color='w')
         plt.ylim(-0.1, 5.1)
         plt.plot(alpha_values, e_result.T, ',k', alpha = 0.25)
-        plt.savefig("Figure3e_e.png") 
+        plt.savefig("Figure3f_e.png") 
         
         plt.figure(figsize=(8, 3.15))
         plt.xticks(color='w')
         plt.yticks(color='w')
         plt.ylim(-1.1, 1.1)
         plt.plot(alpha_values, a_result.T, ',k', alpha = 0.25)
-        plt.savefig("Figure3e_a.png") 
+        plt.savefig("Figure3f_a.png") 
         
         plt.figure(figsize=(8, 3.15))
         plt.xticks(color='w')
         plt.yticks(color='w')
         plt.ylim(-1.1, 1.1)
         plt.plot(alpha_values, b_result.T, ',k', alpha = 0.25)
-        plt.savefig("Figure3e_b.png")           
+        plt.savefig("Figure3f_b.png")           
         
 ## HK_prejudice_map_alpha ##
 # Returns the next iteration of the model for the alpha bifurcation diagram
